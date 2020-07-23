@@ -19,6 +19,9 @@
                                 <v-text-field v-model="form.full_name" label="Full Name" autocomplete="off"></v-text-field>
                             </v-col>
                             <v-col cols="12" sm="6" md="12" >
+                                <v-text-field v-model="form.address" label="Complete Address" autocomplete="off"></v-text-field>
+                            </v-col>                            
+                            <v-col cols="12" sm="6" md="12" >
                                 <v-text-field v-model="form.email" label="Email" autocomplete="off"></v-text-field>
                             </v-col>
                             <v-col cols="12" sm="6" md="12" >
@@ -66,6 +69,7 @@ export default {
             btn_disable: false,
             form: {
                 full_name: null,
+                address: null,
                 email: null,
                 password: null,
             }
