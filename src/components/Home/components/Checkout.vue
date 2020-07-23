@@ -86,6 +86,7 @@ export default {
             if (res.status == 200)
             {
                 await this.$store.dispatch('cart/getCart')
+                this.$swal('Your order is succesfully processed. Please allow 2-3 days for the item to be delivered');
                 this.dialog = false
             }
         }
