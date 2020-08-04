@@ -3,7 +3,7 @@ export default {
         auth: {
             login: '/login',
             logout: '/logout',
-            auth_user: '/auth_user'
+            auth_user: '/auth_user',
         },
         user: {
             resource: '/user',

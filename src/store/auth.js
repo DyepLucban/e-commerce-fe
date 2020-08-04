@@ -31,6 +31,11 @@ const actions = {
         return await Api.createNewUser(params)
     },
 
+    async socialLogin({}, params)
+    {
+        return await Api.socialLogin(params)
+    },
+
 
 }
 

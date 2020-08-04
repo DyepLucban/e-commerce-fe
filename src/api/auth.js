@@ -11,6 +11,14 @@ export default {
         }        
     },
 
+    async socialLogin(params) {
+        try {
+            return await Api().get( endpoints.ecommerce.auth.login + '/' + params + '/callback' )
+        } catch (error) {
+            return error.response
+        }      
+    },
+
     async logout() {
         try {
             return await Api().post( endpoints.ecommerce.auth.logout )

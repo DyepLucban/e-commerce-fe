@@ -1,6 +1,6 @@
 <template>
          <div>
-        <v-dialog max-width="700" v-model="dialog">
+        <v-dialog max-width="500" v-model="dialog">
             <template v-slot:activator="{ on, attrs }">
                 <v-btn text @click="dialog=true">
                     <span class="mr-2">Login</span>
@@ -24,23 +24,27 @@
                         </v-row>
                     </v-container>
                 </v-card-text>      
-                <v-card-actions v-if="loading == false">
+                <v-card-actions>
                     <v-container>
                         <v-row>
-                            <v-spacer></v-spacer>
-                            <v-btn color="blue darken-1" text @click="close" >Cancel</v-btn>                      
-                            <v-btn :disabled="btn_disable" color="blue darken-1" text @click="login" >Login</v-btn>                      
+                            <v-container>
+                                <v-btn v-if="loading == false" block x-large :disabled="btn_disable" class="mb-3" color="blue" @click="login">Login</v-btn>
+                                <v-btn v-else color="blue darken-1" block x-large disabled>
+                                    <v-progress-circular indeterminate color="primary" class="mr-3"></v-progress-circular>
+                                    Processing ... 
+                                </v-btn>
+                            </v-container>
+                        </v-row>
+                            <h5 class="text-left font-weight-bold ">or via social:</h5>
+                            <hr>
+                        <v-row>
+                            <v-container>
+                                <v-btn block class="mb-3" color="green" @click="googleLogin">Google</v-btn>
+                                <v-btn block color="primary" @click="fbLogin">Facebook</v-btn>                                    
+                            </v-container>
                         </v-row>
                     </v-container>
                 </v-card-actions>
-                <v-card-actions v-else>
-                    <v-spacer>
-                    </v-spacer>
-                    <v-btn color="blue darken-1" text disabled>
-                        <v-progress-circular indeterminate color="primary" class="mr-3"></v-progress-circular>
-                        Processing ... 
-                    </v-btn>
-                </v-card-actions>                   
             </v-card>                  
         </v-dialog> 
      </div>
@@ -65,13 +69,17 @@ export default {
                 email: null,
                 password: null,
                 device_name: 'browser'
+            },
+            social: {
+                google: 'google',
+                fb: 'facebook'
             }
         }
     },
 
     methods: {
 
-        ...mapActions ('auth', ['authLogin']),
+        ...mapActions ('auth', ['authLogin', 'socialLogin']),
 
         close()
         {
@@ -87,13 +95,24 @@ export default {
 
             if (res.status == 200)
             {
-
                 localStorage.setItem('token', res.data);
                 this.$router.push({name: 'Home'}).catch(()=>{})
                 this.dialog = false;
                 this.loading = false;
+            } else {
+                this.loading = false;
             }
-        }
+        },
+
+        async googleLogin()
+        {
+            let res = await this.socialLogin(this.social.google)
+        },
+
+        async fbLogin()
+        {
+            let res = await this.socialLogin(this.social.fb)
+        },
     }
 }
 </script>
