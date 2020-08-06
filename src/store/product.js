@@ -17,21 +17,17 @@ const actions = {
         commit('onOkProducts', response.data)
     },
 
-    // async authLogin({}, params) {
-    //     return await Api.login(params)
-    // },
+    async createProduct({}, params) {
+        return await Api.createProduct(params)
+    },
 
-    // async authLogout({commit}, ) {
-    //     let res = await Api.logout()
-    //     commit('onOkProducts', '')
-    //     return res
-    // },
+    async updateProduct({}, params) {
+        return await Api.updateProduct(params)
+    },
 
-    // async addNewUser({}, params) {
-    //     return await Api.createNewUser(params)
-    // },
-
-
+    async deleteProduct({}, params) {
+        return await Api.deleteProduct(params)
+    },
 }
 
 const mutations = {

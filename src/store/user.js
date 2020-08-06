@@ -2,20 +2,20 @@ import Api from '../api/user'
 import { getField, updateField } from 'vuex-map-fields'
 
 const state = {
-    // cart: [],
+    users: [],
 }
 
 const getters = {
     getField,
-    // cart: (state) => state.cart,
+    users: (state) => state.users,
 }
 
 const actions = {
 
-    // async getCart({commit}) {
-    //     let response = await Api.getCart()
-    //     commit('onOkCart', response.data)
-    // },
+    async getAllUsers({commit}) {
+        let response = await Api.getAllUsers()
+        commit('onOkUser', response.data)
+    },
 
     async createUser({}, params) {
         return await Api.createUser(params)
@@ -25,9 +25,9 @@ const actions = {
 
 const mutations = {
     updateField,
-    // onOkCart(state, data) {
-    //     state.cart = data
-    // },
+    onOkUser(state, data) {
+        state.users = data
+    },
 }
 
 export const user = {

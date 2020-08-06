@@ -2,20 +2,20 @@ import Api from '../api/order'
 import { getField, updateField } from 'vuex-map-fields'
 
 const state = {
-    // cart: [],
+    order: [],
 }
 
 const getters = {
     getField,
-    // cart: (state) => state.cart,
+    order: (state) => state.order,
 }
 
 const actions = {
 
-    // async getCart({commit}) {
-    //     let response = await Api.getCart()
-    //     commit('onOkCart', response.data)
-    // },
+    async getAllOrders({commit}) {
+        let response = await Api.getAllOrders()
+        commit('onOkOrder', response.data)
+    },
 
     async addOrder({}, params) {
         return await Api.addOrder(params)
@@ -25,9 +25,9 @@ const actions = {
 
 const mutations = {
     updateField,
-    // onOkCart(state, data) {
-    //     state.cart = data
-    // },
+    onOkOrder(state, data) {
+        state.order = data
+    },
 }
 
 export const order = {

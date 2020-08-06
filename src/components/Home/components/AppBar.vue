@@ -10,6 +10,8 @@
 
             <Cart />
 
+            <Orders />
+
             <v-btn text @click="logout">
                 <span class="mr-2">Logout</span>
                 <v-icon>mdi-logout</v-icon>
@@ -24,6 +26,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import Cart from './Cart'
+import Orders from './Orders'
 import Products from './Products'
 
 export default {
@@ -32,6 +35,7 @@ export default {
     components: {
         Cart,
         Products,
+        Orders,
     },
 
     data() {
