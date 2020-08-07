@@ -7,7 +7,7 @@
                         <v-badge color="orange" content="0" class="mr-4">
                             <v-icon>mdi-cart</v-icon>
                         </v-badge>
-                    Cart
+                        Cart
                     </div>
                     <div v-else>
                         <v-badge color="orange" :content="cart.length" class="mr-4">
@@ -21,8 +21,8 @@
                 <v-list>
                     <v-list-item v-for="(item, k) in cart" :key="k">
                         <v-list-item-content>
-                        <v-list-item-title>{{ item.product.product_name }}</v-list-item-title>
-                        <v-list-item-subtitle>{{ item.quantity }} x ₱ {{ item.product.product_price }}</v-list-item-subtitle>
+                        <v-list-item-title>{{ item.product_name }}</v-list-item-title>
+                        <v-list-item-subtitle>{{ item.quantity }} x ₱ {{ item.product_price }}</v-list-item-subtitle>
                         </v-list-item-content>
 
                         <v-list-item-action>
@@ -76,6 +76,7 @@ export default {
 
     methods: {
         ...mapActions('cart', ['getCart', 'removeCartItem']),
+
         async removeItem(item)
         {
             let res = await this.removeCartItem(item)

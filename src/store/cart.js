@@ -12,7 +12,7 @@ const getters = {
         let total = 0;
 
         state.cart.forEach(element => {
-            total += parseInt(element.product.product_price) * element.quantity
+            total += parseInt(element.product_price) * element.quantity
         });
 
         return total
@@ -24,7 +24,6 @@ const actions = {
     async getCart({commit}) {
         let response = await Api.getCart()
         commit('onOkCart', response.data)
-
     },
 
     async addToCart({commit}, params) {

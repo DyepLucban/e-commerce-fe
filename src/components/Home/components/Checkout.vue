@@ -11,10 +11,10 @@
                     <span class="headline">Order Summary <v-icon>mdi-basket</v-icon></span>
                 </v-card-title>
                 <v-card-text v-for="(item, k) in cartItem" :key="k">
-                        <b>Product Name:</b> {{ item.product.product_name}} <br>
-                        <b>Product Price:</b> ₱ {{ item.product.product_price}} <br>
+                        <b>Product Name:</b> {{ item.product_name}} <br>
+                        <b>Product Price:</b> ₱ {{ item.product_price}} <br>
                         <b>Quantity Ordered:</b> {{ item.quantity }} <br>
-                        <b>Total Price:</b> <strong>₱ {{ item.quantity * item.product.product_price}}</strong>
+                        <b>Total Price:</b> <strong>₱ {{ item.quantity * item.product_price}}</strong>
                         <hr />
                 </v-card-text>
                 <v-card-text>

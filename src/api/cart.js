@@ -21,7 +21,7 @@ export default {
 
     async removeCartItem(params) {
         try {
-            return await Api().delete( endpoints.ecommerce.cart.resource +'/'+ params.id )
+            return await Api().delete( endpoints.ecommerce.cart.resource +'/'+ params.cart_id )
         } catch (error) {
             return error.response
         }

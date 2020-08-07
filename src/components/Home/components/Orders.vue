@@ -30,19 +30,18 @@
                 </div>
                 <div v-else>
                     <v-card-text v-for="(item, k) in order" :key="k">
-                        {{ item.ordered_item }} 
-                        <!-- <div>
-                            <b>Product Name: </b>{{ item.product.product_name }}
+                        <div>
+                            <b>Product Name: </b>{{ item.product_name }}
                         </div>
                         <div>
-                            <b>Product Price: </b>{{ item.product.product_price }}
+                            <b>Product Price: </b>{{ item.product_price }}
                         </div>
                         <div>
-                            <b>Product Description: </b>{{ item.product.product_desc }}
+                            <b>Product Description: </b>{{ item.product_desc }}
                         </div>
                         <div>
                             <b>Quantity Ordered: </b>{{ item.quantity }}
-                        </div>                                                 -->
+                        </div>                                                
                     </v-card-text>
                 </div>
             </v-card>

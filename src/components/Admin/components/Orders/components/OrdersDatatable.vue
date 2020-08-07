@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-data-table :headers="headers" class="elevation-1">
+        <v-data-table :headers="headers" :items="order" class="elevation-1">
             <template v-slot:top>
                 <v-toolbar flat color="white">
                     <v-toolbar-title>Orders</v-toolbar-title>
@@ -9,10 +9,16 @@
                     <!-- <AddModal /> -->
                 </v-toolbar>
             </template>
-            <!-- <template v-slot:item.actions="{ item }">
-                <UpdateModal :user-data="item"/>
-                <DeleteModal :user-data="item"/>
-            </template> -->
+            <template v-slot:item.ordered_item="{ item }">
+                <div class="my-2" v-for="(data, k) in JSON.parse(item.ordered_item)" :key="k">
+                    Name: {{ data.product_name }} <br>
+                    Price: {{ data.product_price }} <br>
+                    Quantity Ordered: {{ data.quantity }} <br>
+                </div>
+            </template>
+            <template v-slot:item.total="{ item }">
+                ₱ {{ item.total }}
+            </template>            
         </v-data-table>        
     </div>
 </template>
@@ -36,10 +42,10 @@ export default {
         return {
             search: '',
             headers: [
-                {text: 'First Name', value: 'first_name'},
-                {text: 'Last Name', value: 'last_name'},
-                {text: 'Email', value: 'email'},
-                {text: 'Role', value: 'role.role_name'},
+                {text: 'User', value: 'user_id'},
+                {text: 'Order', value: 'ordered_item'},
+                {text: 'total', value: 'total'},
+                {text: 'Mode of Payment', value: 'mop'},
                 {text: 'Created At', value: 'created_at'},
                 {text: 'Updated At', value: 'updated_at'},
                 {text: 'Action', value: 'actions'},
@@ -48,15 +54,15 @@ export default {
     },
 
     async mounted() {
-        await this.getAllUsers()
+        await this.getAllOrders()
     },
 
     computed: {
-        ...mapGetters('user', ['users'])
+        ...mapGetters('order', ['order'])
     },
     
     methods: {
-        ...mapActions('user', ['getAllUsers'])
+        ...mapActions('order', ['getAllOrders'])
     }
 }
 </script>
